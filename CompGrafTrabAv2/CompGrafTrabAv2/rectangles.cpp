@@ -26,13 +26,37 @@ void AumentaTela(int w, int h)
 
 
 void FuncaoCubo() {
+	glMatrixMode(GL_MODELVIEW);
 	glColor3f(0.0, 0.8, 0.8);
 	//glLoadIdentity();
-	glScalef(0.8, 0.2, 1);
-	//glRotatef(80, 0, 0, 0);
-	glTranslatef(0.4, 0, 0);
-	//
+	glPushMatrix();
+		glScalef(1, 0.2, 0.5);	
+		//glRotatef((GLfloat)60, 0.5, 1, 0.5);
+		//glRotatef((GLfloat)20, 0, 1, 0);
+		//glRotatef((GLfloat)60, 1, 0, 1);
+		//glRotatef((GLfloat)30, 0, 0, 1);
+		glTranslatef(0.5, 0.0, 0);
+		glPushMatrix();
+			glRotatef((GLfloat)30, 1, 0, 0);
+			glutWireCube(0.8);
+		glPopMatrix();
+		
+	glPopMatrix();
+
+	glColor3f(0.8, 0.0, 0.8);
+	glLoadIdentity();
+	glPushMatrix();
+	glScalef(0.5, 0.2, 1);
+	glRotatef((GLfloat)-90, 0, 0, 1);
+	glRotatef((GLfloat)-20, 0, 1, 0);
+	glRotatef((GLfloat)-60, 1, 0, 1);
+	//glRotatef((GLfloat)30, 0, 0, 1);
+	glTranslatef(0.0, -0.4, 0);
 	glutWireCube(0.8);
+	glPopMatrix();
+	//
+	
+	
 	
 	
 	//
@@ -67,6 +91,7 @@ int main(void)
 {
 	glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
 	glutCreateWindow("Retângulos");
+	glutReshapeFunc(AumentaTela);
 	glutDisplayFunc(DesenhaRetangulos);
 	init();
 
