@@ -1,6 +1,29 @@
 #include <glut.h>
-#include <stdio.h>
-#include <math.h>
+
+void DesenhaRetangulos() {
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	glColor3f(1.0, 1.0, 1.0);
+
+	glPushMatrix();
+	glLoadIdentity();
+	glRotatef((GLfloat) 60.0, 0.1, 0.0, 1.0);
+	glScalef(1, 0.2, 0.5);
+	glTranslatef(0.4, -0.5, 0.0);
+	glutWireCube(0.8);
+	glPopMatrix();
+
+
+	glPushMatrix();
+	glLoadIdentity();
+	glRotatef((GLfloat) 40.0, 0.2, 0.0, -1.0);
+	glScalef(1, 0.2, 0.5);
+	glTranslatef(-0.3, 0.1, 0);
+	glutWireCube(0.8);
+	glPopMatrix();
+
+	glFlush();
+}
 
 void AumentaTela(int w, int h)
 {
@@ -24,64 +47,6 @@ void AumentaTela(int w, int h)
 		gluOrtho2D(-1.0 * largura / altura, 1.0 * largura / altura, -1.0, 1.0);
 }
 
-
-void FuncaoCubo() {
-	glMatrixMode(GL_MODELVIEW);
-	glColor3f(0.0, 0.8, 0.8);
-	//glLoadIdentity();
-	glPushMatrix();
-		glScalef(1, 0.2, 0.5);	
-		//glRotatef((GLfloat)60, 0.5, 1, 0.5);
-		//glRotatef((GLfloat)20, 0, 1, 0);
-		//glRotatef((GLfloat)60, 1, 0, 1);
-		//glRotatef((GLfloat)30, 0, 0, 1);
-		glTranslatef(0.5, 0.0, 0);
-		glPushMatrix();
-			glRotatef((GLfloat)30, 1, 0, 0);
-			glutWireCube(0.8);
-		glPopMatrix();
-		
-	glPopMatrix();
-
-	glColor3f(0.8, 0.0, 0.8);
-	glLoadIdentity();
-	glPushMatrix();
-	glScalef(0.5, 0.2, 1);
-	glRotatef((GLfloat)-90, 0, 0, 1);
-	glRotatef((GLfloat)-20, 0, 1, 0);
-	glRotatef((GLfloat)-60, 1, 0, 1);
-	//glRotatef((GLfloat)30, 0, 0, 1);
-	glTranslatef(0.0, -0.4, 0);
-	glutWireCube(0.8);
-	glPopMatrix();
-	//
-	
-	
-	
-	
-	//
-	
-}
-
-
-
-void DesenhaRetangulos() {
-	glClear(GL_COLOR_BUFFER_BIT);
-	glLoadIdentity();
-
-	glColor3f(0.8, 0.8, 0.05);
-
-	//glRotatef(90, 0, 1, 1);
-	//glutWireSphere(0.5, 10, 10);
-	
-	FuncaoCubo();
-
-	glutReshapeFunc(AumentaTela);
-	glFlush();
-}
-
-
-
 void init(void)
 {
 	glClearColor(0.0,0.0, 0.0, 1.0);
@@ -90,12 +55,10 @@ void init(void)
 int main(void)
 {
 	glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
-	glutCreateWindow("Retângulos");
-	glutReshapeFunc(AumentaTela);
-	glutDisplayFunc(DesenhaRetangulos);
+	glutCreateWindow("Paralelepipedos");
 	init();
-
-	
+	glutDisplayFunc(DesenhaRetangulos);
+	glutReshapeFunc(AumentaTela);
 	glutMainLoop();
 	return(0);
 }
