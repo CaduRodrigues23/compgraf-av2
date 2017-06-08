@@ -1,7 +1,7 @@
 #include <glut.h>
-#include <stdio.h>
-#include <math.h>
-/*
+
+//OBS: faltam as funções de iluminação
+
 void AumentaTela(int w, int h)
 {
 	int altura, largura;
@@ -22,54 +22,43 @@ void AumentaTela(int w, int h)
 		gluOrtho2D(-1.0, 1.0, -1.0 * altura / largura, -1.0 * altura / largura);
 	else
 		gluOrtho2D(-1.0 * largura / altura, 1.0 * largura / altura, -1.0, 1.0);
-}*/
+}
 
 void FuncaoAnel1() {
 	glColor3f(0.0, 0.6, 0.5);
-	glLoadIdentity();
+	glPushMatrix();
+		glLoadIdentity();
+		glScalef(0.2, 1, 1);
+		glutWireTorus(0.1, 0.7, 20, 20);
+	glPopMatrix();
 	
-	glutWireTorus(0.1, 0.7, 20, 20);
-	//glRotatef(360, 0, 0, 0);
-	glScalef(0.2, 1, 1);
-	
-}
-
-void FuncaoAnel2() {
-	glColor3f(0.0, 0.6, 0.5);
-	glLoadIdentity();
-	glutWireTorus(0.1, 0.7, 20, 20);
-	glRotatef(90, 0.2, 0.1, 0.6);
-	glScalef(0.2, 1, 1);
-	
-}
-
-void FuncaoPlaneta() {
-	glColor3f(0.0, 0.8, 0.8);
-	glLoadIdentity();
-	glutWireSphere(0.5, 10, 10);
-	glRotatef(90, 1, 0, 1);
 }
 
 void DesenhaSaturno() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	glLoadIdentity();
 
-	glColor3f(0.8, 0.8, 0.05);
+	glColor3f(0.7, 0.5, 0.2);
+	glPushMatrix();
+		glLoadIdentity();
+		glRotatef(90, 1.0, 0.0, 0.0);
+		glutSolidSphere(0.5, 10, 10);
+	glPopMatrix();
 
-	//glRotatef(90, 0, 1, 1);
-	//glutWireSphere(0.5, 10, 10);
+	glColor3f(0.5, 0.3, 0.1);
+	glPushMatrix();
+	glLoadIdentity();
+	glRotatef(90, 0.2, 0.1, 0.6);
+	glScalef(0.2, 1, 1);
+	glTranslatef(0, 0, 0);
+	glutSolidTorus(0.1, 0.7, 20, 20);
+	glPopMatrix();
 
-	FuncaoPlaneta();
-	FuncaoAnel2();
-	FuncaoAnel1();
-
-
-	//glutReshapeFunc(AumentaTela);
 	glFlush();
 }
 
 
-/*
+
 void init(void)
 {
 	glClearColor(0.0,0.0, 0.0, 1.0);
@@ -85,4 +74,4 @@ int main(void)
 	
 	glutMainLoop();
 	return(0);
-}*/
+}
